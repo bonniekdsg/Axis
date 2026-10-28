@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-URGHuwG4KHGKFvICv6hz+sl0c7F4piCB7lvyVJUUtuw='; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>AXIS — Engenharia, Consultoria e Tecnologia</title>
+  <meta name="description" content="Engenharia, design e tecnologia para tirar projetos do papel e criar novas possibilidades. Construção residencial, acompanhamento de obra, interiores, sistemas, automações e IA.">
+  <meta name="theme-color" content="#003658">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="pt_BR">
+  <meta property="og:title" content="AXIS — Ideias bem projetadas transformam o que vem depois.">
+  <meta property="og:description" content="Engenharia, design e tecnologia para tirar projetos do papel e criar novas possibilidades.">
+
+  <link rel="preload" href="fonts/instrument-sans-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- Liga os estados iniciais das animações só quando há JS. Se main.js não
+       sinalizar em 3s (falha de rede, erro), o conteúdo é revelado sem animação. -->
+  <script>document.documentElement.classList.add('js');setTimeout(function(){if(!window.__axisReady)document.documentElement.classList.remove('js')},3000);</script>
+  <script src="main.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="nav" data-nav>
+    <div class="container nav__inner">
+      <a class="nav__logo" href="#topo" aria-label="AXIS — início" data-intro data-delay="0">
+        <img src="img/logo-axis.svg" width="280" height="44" alt="AXIS Engenharia, Consultoria e Tecnologia">
+      </a>
+      <nav class="nav__links" aria-label="Principal">
+        <a href="#sobre" data-intro data-delay="80">Sobre</a>
+        <a href="#engenharia" data-intro data-delay="140">Engenharia</a>
+        <a href="#tecnologia" data-intro data-delay="200">Tecnologia</a>
+        <a href="#contato" data-intro data-delay="260">Contato</a>
+      </nav>
+      <a class="btn btn--navy nav__cta" href="#contato" data-intro data-delay="320">
+        Conversar
+        <img class="btn__arrow" src="img/arrow-forward-white.svg" width="24" height="24" alt="">
+      </a>
+    </div>
+  </header>
+
+  <main id="conteudo">
+    <!-- Hero -->
+    <section class="hero container" id="topo" aria-labelledby="hero-title">
+      <div class="hero__stage">
+        <div class="hero__media" data-intro-media>
+          <div class="hero__photo">
+            <picture>
+              <source srcset="img/hero.avif" type="image/avif">
+              <img src="img/hero.jpg" width="1152" height="1362" alt="Residência contemporânea de dois pavimentos com piscina iluminada ao entardecer, cercada por vegetação tropical" fetchpriority="high">
+            </picture>
+            <!-- Enquadramento do Figma: a foto continua em repetição por baixo do degradê. Mesma URL, um só download. -->
+            <picture aria-hidden="true">
+              <source srcset="img/hero.avif" type="image/avif">
+              <img src="img/hero.jpg" width="1152" height="1362" alt="">
+            </picture>
+          </div>
+        </div>
+        <picture class="hero__person" data-intro-person>
+          <source srcset="img/engenheira.avif" type="image/avif">
+          <img src="img/engenheira.png" width="1122" height="1174" alt="Engenheira da AXIS sorrindo, de uniforme da empresa, segurando plantas de projeto enroladas" fetchpriority="high">
+        </picture>
+      </div>
+      <div class="hero__panel" data-intro-panel>
+        <p class="eyebrow" data-intro-eyebrow>Engenharia - Design - Tecnologia</p>
+        <h1 class="display" id="hero-title" data-split data-intro-split>Ideias bem projetadas transformam o que vem depois.</h1>
+        <p class="hero__lead" data-intro data-delay="900">Engenharia, design e tecnologia para tirar projetos do papel e criar novas possibilidades.</p>
+        <a class="btn btn--navy btn--lg" href="#sobre" data-intro data-delay="1050">
+          Conheça a AXIS
+          <img class="btn__arrow" src="img/arrow-forward-hero.svg" width="21" height="21" alt="">
+        </a>
+      </div>
+    </section>
+
+    <!-- Frentes de atuação -->
+    <section class="pillars container" id="sobre" aria-label="Frentes de atuação">
+      <a class="pillar" href="#engenharia" data-reveal="rise">
+        <picture class="pillar__bg">
+          <source srcset="img/card-engenharia.avif" type="image/avif">
+          <img src="img/card-engenharia.jpg" width="1300" height="867" alt="" loading="lazy" decoding="async">
+        </picture>
+        <h2 class="pillar__title" data-split>Engenharia e espaços</h2>
+        <p class="pillar__text">Construção, acompanhamento de obras e interiores.</p>
+        <img class="pillar__arrow" src="img/arrow-outward.svg" width="26" height="26" alt="">
+      </a>
+      <a class="pillar" href="#tecnologia" data-reveal="rise" data-delay="140">
+        <picture class="pillar__bg">
+          <source srcset="img/card-tecnologia.avif" type="image/avif">
+          <img src="img/card-tecnologia.jpg" width="1300" height="867" alt="" loading="lazy" decoding="async">
+        </picture>
+        <h2 class="pillar__title" data-split>Tecnologia e Sistemas</h2>
+        <p class="pillar__text">Sistemas, automações e inteligência artificial.</p>
+        <img class="pillar__arrow" src="img/arrow-outward.svg" width="26" height="26" alt="">
+      </a>
+    </section>
+
+    <!-- Engenharia e Espaços -->
+    <section class="spaces container" id="engenharia" aria-labelledby="spaces-title">
+      <header class="section-head" data-reveal>
+        <div class="section-head__title">
+          <p class="eyebrow eyebrow--rule">
+            <span>Engenharia e Espaços</span>
+            <img class="rule" src="img/line-navy.svg" width="185" height="1" alt="">
+          </p>
+          <h2 class="display" id="spaces-title" data-split>Espaços feitos para viver.</h2>
+        </div>
+        <p class="section-head__text">Projetamos e construímos residências com estética, funcionalidade e bem-estar, acompanhando cada etapa com um processo seguro e transparente.</p>
+      </header>
+
+      <ul class="services" role="list">
+        <li class="service" data-reveal="rise">
+          <div class="service__media">
+            <picture>
+              <source srcset="img/servico-construcao.avif" type="image/avif">
+              <img src="img/servico-construcao.jpg" width="900" height="600" alt="Casa moderna em concreto e madeira com jardim tropical" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="service__body">
+            <h3 class="service__title">Construção residencial</h3>
+            <p class="service__text service__text--w199">Da concepção à entrega, com planejamento, qualidade e atenção a cada detalhe.</p>
+            <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+          </div>
+        </li>
+        <li class="service" data-reveal="rise" data-delay="120">
+          <div class="service__media">
+            <picture>
+              <source srcset="img/servico-obra.avif" type="image/avif">
+              <img src="img/servico-obra.jpg" width="900" height="600" alt="Engenheiro com capacete e tablet acompanhando uma obra" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="service__body">
+            <h3 class="service__title service__title--w253">Acompanhamento de obra</h3>
+            <p class="service__text service__text--w306">Gestão técnica, cronograma e controle de qualidade para você acompanhar cada etapa com tranquilidade.</p>
+            <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+          </div>
+        </li>
+        <li class="service" data-reveal="rise" data-delay="240">
+          <div class="service__media">
+            <picture>
+              <source srcset="img/servico-interiores.avif" type="image/avif">
+              <img src="img/servico-interiores.jpg" width="900" height="600" alt="Sala de estar em tons claros com madeira e vista para o jardim" loading="lazy" decoding="async">
+            </picture>
+          </div>
+          <div class="service__body">
+            <h3 class="service__title">Design de interiores</h3>
+            <p class="service__text service__text--w275">Ambientes que refletem seu estilo de vida, com beleza, funcionalidade e cuidado em cada escolha.</p>
+            <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Tecnologia e Sistemas -->
+    <section class="container" id="tecnologia" aria-labelledby="tech-title">
+      <div class="tech" data-reveal="unfold">
+        <picture class="tech__bg">
+          <source srcset="img/tech-bg.avif" type="image/avif">
+          <img src="img/tech-bg.jpg" width="2048" height="768" alt="" loading="lazy" decoding="async">
+        </picture>
+
+        <header class="section-head section-head--light" data-reveal>
+          <div class="section-head__title">
+            <p class="eyebrow eyebrow--rule">
+              <span>Tecnologia e sistemas</span>
+              <img class="rule" src="img/line-white.svg" width="185" height="1" alt="">
+            </p>
+            <h2 class="display" id="tech-title" data-split>Tecnologia que amplia possibilidades.</h2>
+          </div>
+          <p class="section-head__text">Desenvolvemos sistemas, automações e soluções de inteligência artificial para diferentes setores, com foco em eficiência, segurança e resultados reais.</p>
+        </header>
+
+        <ul class="capabilities" role="list" data-reveal>
+          <li class="capability" data-delay="0">
+            <span class="capability__icon capability__icon--sistemas">
+              <picture>
+                <source srcset="img/icon-sistemas.avif" type="image/avif">
+                <img src="img/icon-sistemas.png" width="480" height="420" alt="" loading="lazy" decoding="async">
+              </picture>
+            </span>
+            <h3 class="capability__title">Sistemas</h3>
+            <p class="capability__text">Desenvolvimento de sistemas sob medida para conectar processos e pessoas.</p>
+          </li>
+          <li class="capability__divider" aria-hidden="true" data-delay="120"><img src="img/line-divider.svg" width="128" height="1" alt=""></li>
+          <li class="capability" data-delay="160">
+            <span class="capability__icon capability__icon--automacoes">
+              <picture>
+                <source srcset="img/icon-automacoes.avif" type="image/avif">
+                <img src="img/icon-automacoes.png" width="480" height="320" alt="" loading="lazy" decoding="async">
+              </picture>
+            </span>
+            <h3 class="capability__title">Automações</h3>
+            <p class="capability__text">Soluções que integram tecnologia e operação, com mais eficiência e controle.</p>
+          </li>
+          <li class="capability__divider" aria-hidden="true" data-delay="280"><img src="img/line-divider.svg" width="128" height="1" alt=""></li>
+          <li class="capability" data-delay="320">
+            <span class="capability__icon capability__icon--ia">
+              <picture>
+                <source srcset="img/icon-ia.avif" type="image/avif">
+                <img src="img/icon-ia.png" width="480" height="458" alt="" loading="lazy" decoding="async">
+              </picture>
+            </span>
+            <h3 class="capability__title capability__title--wide">Inteligência artificial</h3>
+            <p class="capability__text">Aplicações que transformam dados em insights e novas oportunidades.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="container" id="contato" aria-labelledby="cta-title">
+      <div class="cta" data-reveal="unfold">
+        <picture class="cta__bg">
+          <source srcset="img/cta-bg.avif" type="image/avif">
+          <img src="img/cta-bg.jpg" width="2168" height="724" alt="" loading="lazy" decoding="async">
+        </picture>
+        <div class="cta__content" data-reveal>
+          <h2 class="cta__title" id="cta-title" data-split>Vamos construir algo juntos?</h2>
+          <p class="cta__text">Converse com o nosso time e descubra como podemos transformar o seu projeto em realidade.</p>
+          <a class="btn btn--white" href="#contato" data-contact>
+            Entrar em contato
+            <img class="btn__arrow" src="img/arrow-forward-cta.svg" width="24" height="24" alt="">
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

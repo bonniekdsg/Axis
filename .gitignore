@@ -1,0 +1,4 @@
+.DS_Store
+
+# Exports brutos do Figma (PNG originais); o site usa as versões otimizadas em img/.
+figma-src/
