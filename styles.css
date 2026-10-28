@@ -388,32 +388,62 @@ section[id] { scroll-margin-top: 110px; }
 
 /* ---------- Engenharia e Espaços ---------- */
 
-.spaces { margin-top: 77px; }
+/* Base (sem JS ou com movimento reduzido): carrossel nativo com snap.
+   Com movimento, main.js adiciona .is-pinned: a seção fixa na tela e a
+   rolagem vertical desliza a trilha para o lado. */
+.spaces {
+  /* Recuo da trilha = margem do container + 14px do Figma, igual dos dois
+     lados: o último card termina alinhado como o primeiro começa.
+     O 100% resolve contra a largura do viewport da trilha onde é usado. */
+  --track-pad: calc(max(var(--gutter), (100% - var(--content)) / 2) + 14px);
+  --card-w: 396px;
+  --card-gap: 12px;
+  margin-top: 77px;
+  /* Os cards sangram até a borda da janela. `clip` (não `hidden`) não cria
+     contêiner de rolagem, então o sticky do palco continua funcionando. */
+  overflow-x: clip;
+}
+
+.spaces__pin { display: flex; flex-direction: column; }
+
+.spaces__viewport {
+  container-type: inline-size;
+  margin-top: 44px;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--track-pad);
+  scrollbar-width: none;
+}
+.spaces__viewport::-webkit-scrollbar { display: none; }
 
 .services {
   list-style: none;
-  margin: 44px 0 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 396px));
-  justify-content: center;
-  gap: 12px;
+  margin: 0;
+  padding: 0 var(--track-pad);
+  display: flex;
+  gap: var(--card-gap);
+  width: max-content;
 }
 
 .service {
-  height: 542px;
+  flex: none;
+  width: var(--card-w);
+  height: var(--card-h, 542px);
   border-radius: var(--radius);
   overflow: hidden;
   background: var(--surface);
   display: flex;
   flex-direction: column;
+  scroll-snap-align: start;
 }
 
-/* Recorte exato do Figma: imagem 431×308 deslocada (-18, -27) dentro de 396 de largura. */
+/* Recorte exato do Figma: imagem 431×308 deslocada (-18, -27) dentro de
+   396×281. Em telas baixas o card encolhe e quem cede altura é a foto. */
 .service__media {
   position: relative;
-  flex: none;
-  aspect-ratio: 396 / 281;
+  flex: 0 1 281px;
+  min-height: 120px;
   overflow: hidden;
 }
 
@@ -427,15 +457,20 @@ section[id] { scroll-margin-top: 110px; }
 
 .service__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.4s var(--ease-out); }
 
+/* Como no Figma: título no mesmo ponto em todos os cards (343 = 281 + 62) e
+   seta presa no pé (480), qualquer que seja o número de linhas do texto.
+   Base igual (542 − 281) em todos: quando o card encolhe, toda foto cede a
+   mesma altura e os títulos continuam alinhados entre si. */
 .service__body {
-  flex: 1;
+  flex: 1 0 261px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: flex-start;
   gap: 9px;
-  padding: 32px 18px 32px 30px;
+  padding: 62px 18px 32px 30px;
 }
+
+.service__arrow { margin-top: auto; }
 
 .service__title {
   max-width: 179px;
@@ -443,12 +478,86 @@ section[id] { scroll-margin-top: 110px; }
   font-size: 28px;
   line-height: 34px;
 }
+.service__title--w199 { max-width: 199px; }
 .service__title--w253 { max-width: 253px; }
+.service__title--w326 { max-width: 326px; }
 
-.service__text { font-size: 14px; }
+.service__text { font-size: 14px; line-height: 17px; }
 .service__text--w199 { max-width: 199px; }
 .service__text--w275 { max-width: 275px; }
+.service__text--w293 { max-width: 293px; }
 .service__text--w306 { max-width: 306px; }
+.service__text--w316 { max-width: 316px; }
+
+/* Indicador: dica + trilho cujo cursor tem a largura da fração visível
+   (curto = tem muito escondido) + contagem dos cards à vista. Só com JS,
+   que é quem o atualiza. */
+.spaces__progress {
+  display: none;
+  align-items: center;
+  gap: 24px;
+  margin-top: 28px;
+  font-size: 13px;
+  font-weight: 500;
+}
+.js .spaces__progress { display: flex; }
+
+.spaces__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  /* Esmaece perto do fim, quando não há mais o que revelar. */
+  opacity: clamp(0.35, calc((1 - var(--hs-p, 0)) * 6), 1);
+}
+.spaces__hint-swipe { display: none; }
+.spaces:not(.is-pinned) .spaces__hint-scroll { display: none; }
+.spaces:not(.is-pinned) .spaces__hint-swipe { display: inline; }
+
+.spaces__hint-arrow {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--surface);
+}
+
+.spaces__rail {
+  position: relative;
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgb(0 54 88 / 0.12);
+}
+
+.spaces__thumb {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: calc(var(--hs-frac, 0.5) * 100%);
+  border-radius: inherit;
+  background: var(--navy);
+  transform: translateX(calc(var(--hs-p, 0) * var(--hs-k, 1) * 100%));
+}
+
+.spaces__count {
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ----- Modo fixado ----- */
+
+.spaces.is-pinned .spaces__pin {
+  position: sticky;
+  top: var(--hs-top, 98px);
+}
+
+/* A trilha passa a ser movida por transform; nada de rolagem nativa. */
+.spaces.is-pinned .spaces__viewport {
+  overflow: visible;
+  scroll-snap-type: none;
+}
+
+.spaces.is-pinned .services { will-change: transform; }
 
 /* ---------- Tecnologia e Sistemas ---------- */
 
@@ -617,32 +726,19 @@ section[id] { scroll-margin-top: 110px; }
   .section-head__title,
   .section-head__text { flex: none; max-width: 600px; }
 
-  /* Carrossel com snap: mantém a proporção dos cards em vez de esmagá-los. */
-  .services {
-    display: flex;
-    /* Centralizar num scroller joga o 1º card para overflow negativo, inalcançável. */
-    justify-content: flex-start;
-    gap: 12px;
-    margin-inline: calc(-1 * var(--gutter));
-    padding-inline: var(--gutter);
-    scroll-padding-inline: var(--gutter);
-    overflow-x: auto;
-    overscroll-behavior-x: contain;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: none;
+  /* --cols cards inteiros + uma faixa de --peek do próximo na borda.
+     Gap = gutter: com o card alinhado ao gutter no snap, o anterior sai por
+     inteiro, sem lasca à esquerda. cqi = largura do viewport da trilha. */
+  .spaces {
+    --cols: 2;
+    --peek: 32px;
+    --track-pad: var(--gutter);
+    --card-gap: var(--gutter);
+    --card-w: min(396px, (100cqi - var(--cols) * var(--gutter) - var(--gutter) - var(--peek)) / var(--cols));
   }
-  .services::-webkit-scrollbar { display: none; }
-  /* --cols cards inteiros + uma faixa do próximo na borda, sinalizando o swipe.
-     Faixa visível = gutter + --peek. Gap = gutter: com o card alinhado ao
-     gutter, o anterior sai por inteiro, sem sobrar uma lasca à esquerda. */
-  .services { --cols: 2; --peek: 16px; gap: var(--gutter); }
-  .service {
-    flex: 0 0 calc((100% - var(--cols) * var(--gutter) - var(--peek)) / var(--cols));
-    height: auto;
-    min-height: 500px;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
+  .spaces__viewport { margin-top: 32px; }
+  .spaces__progress { gap: 16px; margin-top: 20px; }
+  .service { scroll-snap-stop: always; }
 
   .tech { padding: 36px 28px 44px; gap: 40px; }
   .capabilities { flex-direction: column; align-items: flex-start; gap: 32px; }
@@ -661,7 +757,7 @@ section[id] { scroll-margin-top: 110px; }
   .hero__panel .display { font-size: clamp(2.25rem, 15.5cqi, 3.6953rem); hyphens: manual; }
   .nav__cta { padding: 10px 16px; font-size: 15px; }
 
-  .services { --cols: 1; }
+  .spaces { --cols: 1; }
   .hero__panel { padding: 32px 24px 36px; }
   .hero__lead { font-size: 18px; line-height: 27px; }
 
@@ -698,6 +794,16 @@ section[id] { scroll-margin-top: 110px; }
 @keyframes card-rise {
   from { opacity: 0; translate: 0 64px; }
   to   { opacity: 1; translate: 0 0; }
+}
+
+@keyframes card-slide {
+  from { opacity: 0; translate: 140px 0; }
+  to   { opacity: 1; translate: 0 0; }
+}
+
+@keyframes nudge {
+  0%, 55%, 100% { translate: 0 0; }
+  25%           { translate: 6px 0; }
 }
 
 @keyframes unmask {
@@ -768,6 +874,7 @@ section[id] { scroll-margin-top: 110px; }
   .js [data-intro-eyebrow],
   .js [data-reveal="rise"],
   .js [data-reveal="unfold"],
+  .js [data-reveal="slide"] .service,
   .js .section-head .eyebrow > *,
   .js .section-head__text,
   .js .pillar__text,
@@ -821,7 +928,7 @@ section[id] { scroll-margin-top: 110px; }
   [data-reveal="rise"].is-in {
     animation: card-rise 1.2s var(--ease-out) var(--d, 0ms) both;
   }
-  [data-reveal="rise"].is-in :is(.pillar__bg, .service__media) img {
+  [data-reveal="rise"].is-in .pillar__bg img {
     animation: settle 1.9s var(--ease-out) var(--d, 0ms) both;
   }
   .pillar.is-in .w-i {
@@ -833,15 +940,37 @@ section[id] { scroll-margin-top: 110px; }
   .pillar.is-in .pillar__arrow {
     animation: icon-in 0.9s var(--ease-out) calc(var(--d, 0ms) + 760ms) both;
   }
-  .service.is-in .service__title {
-    animation: fade-rise 1s var(--ease-out) calc(var(--d, 0ms) + 320ms) both;
+  /* Serviços: os cards entram deslizando da direita, em cascata. O próprio
+     movimento de entrada já anuncia o eixo em que a seção vai andar. */
+  .service:nth-child(2) { --si: 1; }
+  .service:nth-child(3) { --si: 2; }
+  .service:nth-child(4) { --si: 3; }
+  .service:nth-child(5) { --si: 4; }
+  .service:nth-child(6) { --si: 5; }
+  .service { --sd: calc(var(--si, 0) * 90ms); }
+
+  [data-reveal="slide"].is-in .service {
+    animation: card-slide 1.3s var(--ease-out) var(--sd) both;
   }
-  .service.is-in .service__text {
-    animation: fade-rise 1s var(--ease-out) calc(var(--d, 0ms) + 420ms) both;
+  /* No carrossel nativo, deslocar o card faz o snap persegui-lo e a trilha
+     termina fora do início; ali a entrada é só opacidade. */
+  .spaces:not(.is-pinned) [data-reveal="slide"].is-in .service {
+    animation-name: fade;
   }
-  .service.is-in .service__arrow {
-    animation: icon-in 0.9s var(--ease-out) calc(var(--d, 0ms) + 540ms) both;
+  [data-reveal="slide"].is-in .service__media img {
+    animation: settle 1.9s var(--ease-out) var(--sd) both;
   }
+  [data-reveal="slide"].is-in .service__title {
+    animation: fade-rise 1s var(--ease-out) calc(var(--sd) + 320ms) both;
+  }
+  [data-reveal="slide"].is-in .service__text {
+    animation: fade-rise 1s var(--ease-out) calc(var(--sd) + 420ms) both;
+  }
+  [data-reveal="slide"].is-in .service__arrow {
+    animation: icon-in 0.9s var(--ease-out) calc(var(--sd) + 540ms) both;
+  }
+
+  .spaces__hint-arrow { animation: nudge 1.8s var(--ease-out) infinite; }
 
   /* Blocos escuros: abrem como uma janela. */
   [data-reveal="unfold"].is-in {

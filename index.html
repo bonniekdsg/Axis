@@ -98,60 +98,115 @@
       </a>
     </section>
 
-    <!-- Engenharia e Espaços -->
-    <section class="spaces container" id="engenharia" aria-labelledby="spaces-title">
-      <header class="section-head" data-reveal>
-        <div class="section-head__title">
-          <p class="eyebrow eyebrow--rule">
-            <span>Engenharia e Espaços</span>
-            <img class="rule" src="img/line-navy.svg" width="185" height="1" alt="">
-          </p>
-          <h2 class="display" id="spaces-title" data-split>Espaços feitos para viver.</h2>
-        </div>
-        <p class="section-head__text">Projetamos e construímos residências com estética, funcionalidade e bem-estar, acompanhando cada etapa com um processo seguro e transparente.</p>
-      </header>
+    <!-- Engenharia e Espaços
+         Com movimento: a seção fixa na tela e a rolagem vertical desliza os cards
+         para o lado (main.js). Sem JS ou com movimento reduzido: carrossel nativo. -->
+    <section class="spaces" id="engenharia" aria-labelledby="spaces-title" data-hscroll>
+      <div class="spaces__pin" data-hscroll-pin>
+        <header class="section-head container" data-reveal>
+          <div class="section-head__title">
+            <p class="eyebrow eyebrow--rule">
+              <span>Engenharia e Espaços</span>
+              <img class="rule" src="img/line-navy.svg" width="185" height="1" alt="">
+            </p>
+            <h2 class="display" id="spaces-title" data-split>Espaços feitos para viver.</h2>
+          </div>
+          <p class="section-head__text">Projetamos e construímos residências com estética, funcionalidade e bem-estar, acompanhando cada etapa com um processo seguro e transparente.</p>
+        </header>
 
-      <ul class="services" role="list">
-        <li class="service" data-reveal="rise">
-          <div class="service__media">
-            <picture>
-              <source srcset="img/servico-construcao.avif" type="image/avif">
-              <img src="img/servico-construcao.jpg" width="900" height="600" alt="Casa moderna em concreto e madeira com jardim tropical" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <div class="service__body">
-            <h3 class="service__title">Construção residencial</h3>
-            <p class="service__text service__text--w199">Da concepção à entrega, com planejamento, qualidade e atenção a cada detalhe.</p>
-            <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
-          </div>
-        </li>
-        <li class="service" data-reveal="rise" data-delay="120">
-          <div class="service__media">
-            <picture>
-              <source srcset="img/servico-obra.avif" type="image/avif">
-              <img src="img/servico-obra.jpg" width="900" height="600" alt="Engenheiro com capacete e tablet acompanhando uma obra" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <div class="service__body">
-            <h3 class="service__title service__title--w253">Acompanhamento de obra</h3>
-            <p class="service__text service__text--w306">Gestão técnica, cronograma e controle de qualidade para você acompanhar cada etapa com tranquilidade.</p>
-            <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
-          </div>
-        </li>
-        <li class="service" data-reveal="rise" data-delay="240">
-          <div class="service__media">
-            <picture>
-              <source srcset="img/servico-interiores.avif" type="image/avif">
-              <img src="img/servico-interiores.jpg" width="900" height="600" alt="Sala de estar em tons claros com madeira e vista para o jardim" loading="lazy" decoding="async">
-            </picture>
-          </div>
-          <div class="service__body">
-            <h3 class="service__title">Design de interiores</h3>
-            <p class="service__text service__text--w275">Ambientes que refletem seu estilo de vida, com beleza, funcionalidade e cuidado em cada escolha.</p>
-            <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
-          </div>
-        </li>
-      </ul>
+        <div class="spaces__viewport" data-hscroll-viewport>
+          <ul class="services" role="list" data-hscroll-track data-reveal="slide">
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source srcset="img/servico-construcao.avif" type="image/avif">
+                <img src="img/servico-construcao.jpg" width="900" height="600" alt="Casa moderna em concreto e madeira com jardim tropical" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title">Construção residencial</h3>
+              <p class="service__text service__text--w199">Da concepção à entrega, com planejamento, qualidade e atenção a cada detalhe.</p>
+              <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+            </div>
+          </li>
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source srcset="img/servico-obra.avif" type="image/avif">
+                <img src="img/servico-obra.jpg" width="900" height="600" alt="Engenheiro com capacete e tablet acompanhando uma obra" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title service__title--w253">Acompanhamento de obra</h3>
+              <p class="service__text service__text--w306">Gestão técnica, cronograma e controle de qualidade para você acompanhar cada etapa com tranquilidade.</p>
+              <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+            </div>
+          </li>
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source srcset="img/servico-interiores.avif" type="image/avif">
+                <img src="img/servico-interiores.jpg" width="900" height="600" alt="Sala de estar em tons claros com madeira e vista para o jardim" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title">Design de interiores</h3>
+              <p class="service__text service__text--w275">Ambientes que refletem seu estilo de vida, com beleza, funcionalidade e cuidado em cada escolha.</p>
+              <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+            </div>
+          </li>
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source srcset="img/servico-reforma.avif" type="image/avif">
+                <img src="img/servico-reforma.jpg" width="1096" height="616" alt="Ambiente em reforma com paredes descascadas, escada e materiais de obra junto às janelas" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title">Reforma residencial</h3>
+              <p class="service__text service__text--w316">Transformação de espaços com planejamento, execução e mínima interferência na sua rotina, valorizando o que já existe.</p>
+              <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+            </div>
+          </li>
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source srcset="img/servico-projetos.avif" type="image/avif">
+                <img src="img/servico-projetos.jpg" width="900" height="600" alt="Maquete de residência sobre plantas arquitetônicas em uma mesa de madeira" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title service__title--w326">Projetos arquitetônicos e complementares</h3>
+              <p class="service__text service__text--w293">Unindo estética, funcionalidade e viabilidade técnica desde o primeiro traço.</p>
+              <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+            </div>
+          </li>
+          <li class="service">
+            <div class="service__media">
+              <picture>
+                <source srcset="img/servico-regularizacao.avif" type="image/avif">
+                <img src="img/servico-regularizacao.jpg" width="1096" height="616" alt="Profissional da AXIS revisando plantas e documentos sobre a mesa" loading="lazy" decoding="async">
+              </picture>
+            </div>
+            <div class="service__body">
+              <h3 class="service__title service__title--w199">Regularização de imóveis</h3>
+              <p class="service__text service__text--w275">Assessoria completa para documentação, aprovações e adequação do seu imóvel às normas vigentes.</p>
+              <img class="service__arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+            </div>
+          </li>
+          </ul>
+        </div>
+
+        <div class="spaces__progress container" aria-hidden="true">
+          <span class="spaces__hint">
+            <span class="spaces__hint-scroll">Role para ver mais</span>
+            <span class="spaces__hint-swipe">Deslize para ver mais</span>
+            <img class="spaces__hint-arrow" src="img/arrow-forward-navy.svg" width="30" height="30" alt="">
+          </span>
+          <span class="spaces__rail"><span class="spaces__thumb"></span></span>
+          <span class="spaces__count" data-hscroll-count>6 serviços</span>
+        </div>
+      </div>
     </section>
 
     <!-- Tecnologia e Sistemas -->
