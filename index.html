@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-URGHuwG4KHGKFvICv6hz+sl0c7F4piCB7lvyVJUUtuw='; style-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
   <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>AXIS — Engenharia, Consultoria e Tecnologia</title>
+  <title>Grupo AXIS — Engenharia, Design e Tecnologia</title>
   <meta name="description" content="Engenharia, design e tecnologia para tirar projetos do papel e criar novas possibilidades. Construção residencial, acompanhamento de obra, interiores, sistemas, automações e IA.">
   <meta name="theme-color" content="#003658">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -13,7 +13,7 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="pt_BR">
   <meta property="og:url" content="https://grupo-axis.com/">
-  <meta property="og:site_name" content="AXIS">
+  <meta property="og:site_name" content="Grupo AXIS">
   <meta property="og:title" content="AXIS — Ideias bem projetadas transformam o que vem depois.">
   <meta property="og:description" content="Engenharia, design e tecnologia para tirar projetos do papel e criar novas possibilidades.">
   <meta property="og:image" content="https://grupo-axis.com/img/card-engenharia.jpg">
@@ -35,8 +35,8 @@
 
   <header class="nav" data-nav>
     <div class="container nav__inner">
-      <a class="nav__logo" href="#topo" aria-label="AXIS — início" data-intro data-delay="0">
-        <img src="img/logo-axis.svg" width="280" height="44" alt="AXIS Engenharia, Consultoria e Tecnologia">
+      <a class="nav__logo" href="#topo" aria-label="Grupo AXIS — início" data-intro data-delay="0">
+        <img src="img/logo-axis-nav.svg" width="290" height="51" alt="Grupo AXIS — Engenharia, Design e Tecnologia">
       </a>
       <nav class="nav__links" aria-label="Principal">
         <a href="#sobre" data-intro data-delay="80">Sobre</a>
@@ -46,7 +46,7 @@
       </nav>
       <a class="btn btn--navy nav__cta" href="#contato" data-intro data-delay="320">
         Conversar
-        <img class="btn__arrow" src="img/arrow-forward-white.svg" width="24" height="24" alt="">
+        <img class="btn__icon" src="img/icon-whatsapp-white.svg" width="20" height="20" alt="">
       </a>
     </div>
   </header>
@@ -61,16 +61,11 @@
               <source srcset="img/hero.avif" type="image/avif">
               <img src="img/hero.jpg" width="1152" height="1362" alt="Residência contemporânea de dois pavimentos com piscina iluminada ao entardecer, cercada por vegetação tropical" fetchpriority="high">
             </picture>
-            <!-- Enquadramento do Figma: a foto continua em repetição por baixo do degradê. Mesma URL, um só download. -->
-            <picture aria-hidden="true">
-              <source srcset="img/hero.avif" type="image/avif">
-              <img src="img/hero.jpg" width="1152" height="1362" alt="">
-            </picture>
           </div>
         </div>
         <picture class="hero__person" data-intro-person>
-          <source srcset="img/engenheira.avif" type="image/avif">
-          <img src="img/engenheira.png" width="1122" height="1174" alt="Engenheira da AXIS sorrindo, de uniforme da empresa, segurando plantas de projeto enroladas" fetchpriority="high">
+          <source srcset="img/engenheira-grupo.avif" type="image/avif">
+          <img src="img/engenheira-grupo.png" width="1122" height="1174" alt="Engenheira do Grupo AXIS sorrindo, com o logo da empresa bordado na camisa, segurando plantas de projeto enroladas" fetchpriority="high">
         </picture>
       </div>
       <div class="hero__panel" data-intro-panel>
@@ -275,6 +270,9 @@
 
     <!-- Contato -->
     <section class="container" id="contato" aria-labelledby="cta-title">
+      <!-- Palco: o bloco recorta foto e texto; a engenheira fica fora do recorte
+           para sair 50px acima do topo (como no Figma), cortada só na base. -->
+      <div class="cta-stage">
       <div class="cta" data-reveal="unfold">
         <picture class="cta__bg">
           <source srcset="img/cta-bg.avif" type="image/avif">
@@ -289,7 +287,49 @@
           </a>
         </div>
       </div>
+      <picture class="cta__person" data-reveal="person">
+        <source srcset="img/engenheira-convite.avif" type="image/avif">
+        <img src="img/engenheira-convite.png" width="650" height="780" alt="Engenheira do Grupo AXIS de capacete, convidando com um gesto de mão" loading="lazy" decoding="async">
+      </picture>
+      </div>
     </section>
   </main>
+
+  <footer class="footer container" data-reveal>
+    <img class="footer__rule" src="img/line-footer-h.svg" width="1173" height="1" alt="">
+
+    <div class="footer__main">
+      <a class="footer__logo" href="#topo" aria-label="Grupo AXIS — voltar ao início">
+        <img src="img/logo-axis-grupo-claro.svg" width="142" height="42" alt="">
+      </a>
+      <span class="footer__divider" aria-hidden="true">
+        <img src="img/line-footer-v.svg" width="132" height="1" alt="">
+      </span>
+
+      <div class="footer__cols">
+        <nav class="footer__col" aria-labelledby="footer-nav">
+          <h2 class="footer__heading" id="footer-nav">Navegação</h2>
+          <ul class="footer__list" role="list">
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#engenharia">Engenharia</a></li>
+            <li><a href="#tecnologia">Tecnologia</a></li>
+            <li><a href="#contato">Contato</a></li>
+          </ul>
+        </nav>
+        <div class="footer__col">
+          <h2 class="footer__heading">Conecte-se</h2>
+          <!-- TODO: endereços oficiais do Instagram e do WhatsApp (ainda não definidos).
+               Sem href, ficam como texto e não levam a lugar errado. -->
+          <ul class="footer__list footer__list--social" role="list">
+            <li><a class="footer__social"><img class="footer__icon footer__icon--ig" src="img/icon-instagram.svg" width="17" height="17" alt="">Instagram</a></li>
+            <li><a class="footer__social"><img class="footer__icon" src="img/icon-whatsapp.svg" width="17" height="17" alt="">WhatsApp</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <img class="footer__rule" src="img/line-footer-h.svg" width="1173" height="1" alt="">
+    <p class="footer__copy">© AXIS. Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
